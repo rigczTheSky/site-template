@@ -8,28 +8,48 @@ from .models import Post
 def home(request):
     return render(request, 'main/index.html')
 
-def blog_index(request):
+def news(request):
     posts = Post.objects.all().order_by("-created_on")
     context = {
         "posts": posts,
     }
     return render(request, "site_app/index.html", context)
 
-def blog_detail(request, pk):
+def domestic(request):
+    posts = Post.objects.filter(category__name='Domestic').order_by('-created_on')
+    context = {
+        "posts": posts,
+    }
+    return render(request, "site_app/index.html", context)
+
+def world(request):
+    posts = Post.objects.filter(category__name='World').order_by('-created_on')
+    context = {
+        "posts": posts,
+    }
+    return render(request, "site_app/index.html", context)
+
+def about(request):
+    post = Post.objects.filter(category__name='About').order_by('-created_on').first()
+    context = {
+        "post": post,
+    }
+    return render(request, "site_app/about.html", context)
+
+def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
     context = {
         "post": post,
     }
     return render(request, "site_app/detail.html", context)
 
-@csrf_exempt  # TinyMCE nie przesyła CSRF tokena, więc wyłączamy na ten widok
+@csrf_exempt 
 def upload_image(request):
     if request.method == 'POST' and request.FILES.get('file'):
         image = request.FILES['file']
         image_name = image.name
         save_path = os.path.join(settings.MEDIA_ROOT, image_name)
 
-        # Zapis pliku
         with open(save_path, 'wb+') as destination:
             for chunk in image.chunks():
                 destination.write(chunk)

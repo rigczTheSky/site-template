@@ -5,8 +5,5 @@
 {% endblock page_title %}
 
 {% block page_content %}
-    <small>
-        {{ post.created_on.date }}
-    </small>
     <p>{{ post.body | safe }}</p>
 {% endblock page_content %}

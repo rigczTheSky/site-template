@@ -17,7 +17,7 @@ class Post(models.Model):
     body = HTMLField() 
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    categories = models.ManyToManyField("Category", related_name="posts")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=False, blank=False)
 
     def __str__(self):
         return self.title

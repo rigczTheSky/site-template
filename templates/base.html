@@ -73,13 +73,14 @@
 </head>
 <body>
     <div class="navbar">
-	    <a href="{% url "blog_index" %}">Main</a>
+	    <a href="{% url "news" %}">Main</a>
     </div>
     <div class="container">
         <div class="sidebar">
-	    <a href="{% url "blog_index" %}">Section 1</a>
-	    <a href="{% url "blog_index" %}">Section 2</a>
-	    <a href="{% url "blog_index" %}">Section 3</a>
+	    <a href="{% url "news" %}">News</a>
+	    <a href="{% url "domestic" %}">Domestic</a>
+	    <a href="{% url "world" %}">World</a>
+	    <a href="{% url "about" %}">About</a>
         </div>
         <div class="content" id="main-content">
 	    <h2>{% block page_title %}{% endblock page_title %}</h2>

@@ -1,8 +1,11 @@
 from django.urls import path
-from .views import blog_index, blog_detail, upload_image
+from .views import news, domestic, world, about, post_detail, upload_image
 
 urlpatterns = [
-    path("", blog_index, name="blog_index"),
-    path("post/<int:pk>/", blog_detail, name="blog_detail"),
+    path("", news, name="news"),
+    path("domestic", domestic, name="domestic"),
+    path("world", world, name="world"),
+    path("about", about, name="about"),
+    path("post/<int:pk>/", post_detail, name="post_detail"),
     path('upload_image/', upload_image, name='upload_image'),
 ]
