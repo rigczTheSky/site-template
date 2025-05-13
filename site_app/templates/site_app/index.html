@@ -9,7 +9,7 @@
             <small>
                 {{ post.created_on.date }} | Categories:
             </small>
-            <p>{{ post.body | slice:":400" }}...</p>
+            <p>{{ post.body | slice:":400" | safe }}...</p>
         {% endfor %}
     {% endblock posts %}
 {% endblock page_content %}
