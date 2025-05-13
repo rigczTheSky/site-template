@@ -9,8 +9,9 @@ def home(request):
     return render(request, 'main/index.html')
 
 def news(request):
-    posts = Post.objects.all().order_by("-created_on")
+    posts = Post.objects.exclude(category__name='About').order_by('-created_on')
     context = {
+        "header": "News",
         "posts": posts,
     }
     return render(request, "site_app/index.html", context)
@@ -18,6 +19,7 @@ def news(request):
 def domestic(request):
     posts = Post.objects.filter(category__name='Domestic').order_by('-created_on')
     context = {
+        "header": "Domestic",
         "posts": posts,
     }
     return render(request, "site_app/index.html", context)
@@ -25,6 +27,7 @@ def domestic(request):
 def world(request):
     posts = Post.objects.filter(category__name='World').order_by('-created_on')
     context = {
+        "header": "World",
         "posts": posts,
     }
     return render(request, "site_app/index.html", context)
