@@ -5,6 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from .models import Post
 
+def home(request):
+    return render(request, 'main/index.html')
+
 def blog_index(request):
     posts = Post.objects.all().order_by("-created_on")
     context = {
